@@ -9,7 +9,6 @@ class home extends Component {
     componentDidMount(){ //send request to server to retreive our information using axios
         axios.get('/takes')
             .then( res =>{
-                console.log(res.data)
                 this.setState({
                     takes: res.data
                 })
@@ -18,7 +17,7 @@ class home extends Component {
     }
     render() {
         let recentTakesMarkup = this.state.takes?(//want to check if state of takes is null; if it is not, then it is still loading the takes
-            this.state.takes.map(take => <Take take ={take}/>)
+            this.state.takes.map((take) => <Take key ={take.takeId}take ={take}/>)
         )  : <p>Loading..</p>
         return (
             <Grid container spacing ={2}>
