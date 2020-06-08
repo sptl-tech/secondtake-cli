@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import AppIcon from '../images/icon.png'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+
 //Material UI imports
 import withStyles from '@material-ui/core/styles/withStyles'
 import Grid from '@material-ui/core/Grid'
@@ -33,7 +34,7 @@ class signup extends Component {
         this.setState({
             loading: true
         })
-        const newUserData ={
+        const newUserData ={ //fields that user enters to signup 
             email: this.state.email,
             password: this.state.password,
             confirmPassword: this.state.confirmPassword,
