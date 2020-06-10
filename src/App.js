@@ -32,7 +32,6 @@ if (token) { //want to decode the token using jwt-decode to see if user needs to
   if (decodedToken.exp *1000 < Date.now()){ //if token has expired, user gets redirected to login page
     store.dispatch(logoutUser())
     window.location.href = '/login'
-    localStorage.clear();
   }
   else{ //user is authenticated and does not need to login in again
     store.dispatch({type: SET_AUTHENTICATED});
