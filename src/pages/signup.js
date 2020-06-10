@@ -29,6 +29,7 @@ class signup extends Component {
             password: '',
             confirmPassword: '',
             handle: '',
+            team: '',
             errors: {}
         }
     }

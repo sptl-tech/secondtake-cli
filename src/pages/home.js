@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Grid  from '@material-ui/core/Grid'
+
 import Take from '../components/Take'
+import Profile from '../components/Profile'
+
 class home extends Component {
     state ={
         takes: null
@@ -20,12 +23,12 @@ class home extends Component {
             this.state.takes.map((take) => <Take key ={take.takeId}take ={take}/>)
         )  : <p>Loading..</p>
         return (
-            <Grid container spacing ={2}>
+            <Grid container spacing ={9}>
                 <Grid item sm={8} xs={12}> 
                     {recentTakesMarkup}
                 </Grid>
                 <Grid item sm={4} xs={12}>
-                    <p>Profile..</p>
+                    <Profile />
                 </Grid>
             </Grid>
         );
