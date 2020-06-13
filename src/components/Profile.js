@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
 import dayjs from 'dayjs'
 import { logoutUser, uploadImage } from '../redux/actions/userActions'
+import EditDetails from './EditDetails.js'
 
 //MUI
 import withStyles from '@material-ui/core/styles/withStyles'
@@ -20,6 +21,7 @@ import LinkIcon from '@material-ui/icons/Link'
 import CalendarToday from '@material-ui/icons/CalendarToday'
 import Grade from '@material-ui/icons/Grade'
 import EditIcon from '@material-ui/icons/Edit'
+import KeyboardReturn from '@material-ui/icons/KeyboardReturn'
 
 const styles = (theme) => ({
     paper: {
@@ -81,6 +83,9 @@ class Profile extends Component {
       const fileInput = document.getElementById('imageInput')
       fileInput.click(); //opens image selection on computer 
     }
+    handleLogout = () =>{
+      this.props.logoutUser();
+    }
     render() {
         const {classes, user: {credentials:{handle, createdAt, imageUrl, bio, website, location, team}, loading, authenticated} } = this.props; //destructuring to obtain info for user's profile
         
@@ -121,15 +126,21 @@ class Profile extends Component {
                             </Fragment>
                         )}
                          {team && (
-                            <Fragment>
+                            <Typography>
                                 <Grade color="primary" /> <span>{team}</span>
                                 <hr/>
-                            </Fragment>
+                            </Typography>
                         )}
                         <hr/>
                         <CalendarToday color ="primary" /> {' '}
                         <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
                     </div>
+                    <Tooltip title="Logout"> 
+                      <IconButton onClick={this.handleLogout}> 
+                        <KeyboardReturn color ="primary"/>
+                      </IconButton>
+                    </Tooltip>
+                    <EditDetails />
                 </div>
             </Paper>
         ) : ( //case if user is not authenticated

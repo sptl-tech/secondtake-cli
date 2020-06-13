@@ -63,6 +63,15 @@ export const uploadImage = (formData) => (dispatch) =>{ //method to upload/chang
         .catch(err => console.log(err))
 }
 
+export const editUserDetails = (userDetails) => (dispatch) =>{
+    dispatch({type: LOADING_USER})
+    axios.post('/user', userDetails) //posts new user details in /user
+        .then(() =>{
+            dispatch(getUserData())
+        })
+        .catch(err => console.log(err))
+}
+
 const setAuthorizationHeader = (token) =>{
     const FBIdToken = `Bearer ${token}`; //FB auth token for when user logs in
     localStorage.setItem('FBIdToken', FBIdToken) //store token in local storage
