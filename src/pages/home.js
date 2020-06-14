@@ -5,6 +5,9 @@ import Grid  from '@material-ui/core/Grid'
 import Take from '../components/Take'
 import Profile from '../components/Profile'
 
+import Autorenew from '@material-ui/icons/Autorenew'
+
+
 class home extends Component {
     state ={
         takes: null
@@ -21,7 +24,7 @@ class home extends Component {
     render() {
         let recentTakesMarkup = this.state.takes?(//want to check if state of takes is null; if it is not, then it is still loading the takes
             this.state.takes.map((take) => <Take key ={take.takeId}take ={take}/>)
-        )  : <p>Loading..</p>
+        )  : <Autorenew />
         return (
             <Grid container spacing ={9}>
                 <Grid item sm={8} xs={12}> 

@@ -6,7 +6,6 @@ import jwtDecode from 'jwt-decode';
 //Material UI 
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
-
 //components
 import Navbar from './components/Navbar';
 import themeFile from './util/theme'
