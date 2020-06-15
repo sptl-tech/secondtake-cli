@@ -33,7 +33,6 @@ export const signupUser = (newUserData, history) =>(dispatch) =>{
                   payload: err.response.data
                 });
               });
-
           
 }
 
@@ -70,7 +69,7 @@ export const editUserDetails = (userDetails) => (dispatch) =>{
             dispatch(getUserData())
         })
         .catch(err => console.log(err))
-}
+}   
 
 const setAuthorizationHeader = (token) =>{
     const FBIdToken = `Bearer ${token}`; //FB auth token for when user logs in

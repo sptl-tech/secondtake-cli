@@ -4,26 +4,23 @@ import Grid  from '@material-ui/core/Grid'
 
 import Take from '../components/Take'
 import Profile from '../components/Profile'
+import PropTypes from 'prop-types'
 
+import {connect} from 'react-redux'
+import {getTakes} from '../redux/actions/dataActions'
 import Autorenew from '@material-ui/icons/Autorenew'
 
 
 class home extends Component {
-    state ={
-        takes: null
-    }
+  
     componentDidMount(){ //send request to server to retreive our information using axios
-        axios.get('/takes')
-            .then( res =>{
-                this.setState({
-                    takes: res.data
-                })
-            })
-            .catch(err => console.log(err));
+        this.props.getTakes();
     }
     render() {
-        let recentTakesMarkup = this.state.takes?(//want to check if state of takes is null; if it is not, then it is still loading the takes
-            this.state.takes.map((take) => <Take key ={take.takeId}take ={take}/>)
+        const {takes, loading} = this.props.data;
+
+        let recentTakesMarkup = !loading?(//if we aren't loading, then show takes
+            takes.map((take) => <Take key ={take.takeId}take ={take}/>)
         )  : <Autorenew />
         return (
             <Grid container spacing ={9}>
@@ -38,4 +35,13 @@ class home extends Component {
     }
 }
 
-export default home
+home.propTypes ={
+    getTakes: PropTypes.func.isRequired,
+    data: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+    data: state.data
+})
+
+export default connect(mapStateToProps, {getTakes})(home) 
