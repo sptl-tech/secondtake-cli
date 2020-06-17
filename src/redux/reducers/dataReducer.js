@@ -1,4 +1,4 @@
-import {SET_TAKES, LIKE_TAKE, UNLIKE_TAKE, LOADING_DATA, DELETE_TAKE} from '../types'
+import {SET_TAKES, LIKE_TAKE, UNLIKE_TAKE, LOADING_DATA, DELETE_TAKE, POST_TAKE} from '../types'
 
 const initialState = { //initial state of no takes, no take data, and not loading
     takes: [],
@@ -39,7 +39,14 @@ export default function (state = initialState, action){
           return {
             ...state
           };
-
+        case POST_TAKE: //when new take is posted, add to takes array
+          return{
+            ...state,
+            takes: [ 
+              action.payload,
+              ...state.takes
+            ]
+          }
         default:
             return state;
         }
