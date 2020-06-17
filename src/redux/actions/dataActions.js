@@ -1,4 +1,4 @@
-import { SET_TAKES, LOADING_DATA, LIKE_TAKE, UNLIKE_TAKE, SET_ERRORS} from '../types'
+import { SET_TAKES, LOADING_DATA, LIKE_TAKE, UNLIKE_TAKE, SET_ERRORS, DELETE_TAKE} from '../types'
 import axios from 'axios'
 
 //retreiving all takes
@@ -41,4 +41,13 @@ export const unlikeTake = (takeId) => dispatch =>{
             })
         })
         .catch(err => console.log(err));
+}
+
+//delete take
+export const deleteTake = (takeId) => dispatch =>{
+    axios.delete(`/take/${takeId}`)
+        .then(() =>{
+            dispatch({type: DELETE_TAKE, payload: takeId})
+        })
+        .catch(err => console.log(err))
 }

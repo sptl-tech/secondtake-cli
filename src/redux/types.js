@@ -15,6 +15,6 @@ export const SET_TAKES = 'SET_TAKES';
 export const SET_TAKE = 'SET_TAKE';
 export const LIKE_TAKE = 'LIKE_TAKE';
 export const UNLIKE_TAKE = 'UNLIKE_TAKE';
-
+export const DELETE_TAKE = 'DELETE_TAKE';
 
 

@@ -3,7 +3,7 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import {Link} from 'react-router-dom'
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime'
-
+import DeleteTake from './DeleteTake'
 import { connect } from 'react-redux';
 import { likeTake, unlikeTake} from '../redux/actions/dataActions'
 import PropTypes from 'prop-types';
@@ -23,6 +23,7 @@ import FavoriteBorder from '@material-ui/icons/FavoriteBorder'
 
 const styles ={
     card:{
+        position: 'relative',
         display: 'flex', 
         marginBottom: 20
 
@@ -53,7 +54,7 @@ class Take extends Component {
     }
     render() { 
         dayjs.extend(relativeTime)
-        const { classes, take : {body, commentCount, createdAt, likeCount, userHandle, userImage}, user: {authenticated} } = this.props //extracts info from the takes and passes to props to use in file
+        const { classes, take : {body, commentCount, createdAt, likeCount, userHandle, takeId, userImage}, user: {authenticated, credentials: {handle}} } = this.props //extracts info from the takes and passes to props to use in file
         
         const likeButton = !authenticated ? ( //checks if user is authenticated => If not logged in, clicking the like button will redirect to login page
             <MyButton tip="Like">
@@ -61,8 +62,7 @@ class Take extends Component {
                     <FavoriteBorder color="primary"/>
                 </Link>
             </MyButton>
-        ) : (
-            this.likedTake() ? ( //if take is shown in liked array with that user
+        ) : this.likedTake() ? (//if take is shown in liked array with that user
                 <MyButton tip="Undo Like" onClick={this.unlikeTake}>
                     <FavoriteIcon color="primary" />
                 </MyButton>
@@ -71,12 +71,17 @@ class Take extends Component {
                     <FavoriteBorder color="primary" />
                 </MyButton>
             )
-        )
+
+    const deleteButton = //allows users who are logged in to delete thier OWN takes
+            authenticated && userHandle === handle ? ( 
+            <DeleteTake takeId={takeId} />
+        ) : null
         return (
            <Card className ={classes.card}>
                <CardMedia image={userImage} title="Profile Image" className = {classes.image}/>
                 <CardContent className = {classes.content}>
                     <Typography variant = "h5" component={Link} to={`/users/${userHandle}`} color="primary">{userHandle}</Typography>
+                    {deleteButton}
                     <Typography variant = "body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
                     <Typography variant = "body1">{body}</Typography>
                     {likeButton}
