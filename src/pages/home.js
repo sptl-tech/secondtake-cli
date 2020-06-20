@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import Grid  from '@material-ui/core/Grid'
 
-import Take from '../components/Take'
-import Profile from '../components/Profile'
+import Take from '../components/take/Take'
+import Profile from '../components/profile/Profile'
 import PropTypes from 'prop-types'
 
 import {connect} from 'react-redux'

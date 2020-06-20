@@ -1,4 +1,4 @@
-import { SET_TAKES, LOADING_DATA, LIKE_TAKE, UNLIKE_TAKE, SET_ERRORS, DELETE_TAKE, CLEAR_ERRORS, POST_TAKE, LOADING_UI} from '../types'
+import { SET_TAKES, LOADING_DATA, LIKE_TAKE, UNLIKE_TAKE, SET_ERRORS, DELETE_TAKE, CLEAR_ERRORS, POST_TAKE, LOADING_UI, STOP_LOADING_UI, SET_TAKE} from '../types'
 import axios from 'axios'
 
 //retreiving all takes
@@ -18,6 +18,20 @@ export const getTakes = () => dispatch =>{
             })
         })
     }
+
+//action of retreiving single take to show when expanded
+export const getTake = (takeId) => dispatch =>{
+    dispatch({type: LOADING_UI})
+    axios.get(`/take/${takeId}`)
+        .then (res => {
+            dispatch({
+                type: SET_TAKE,
+                payload: res.data
+            });
+            dispatch({ type: STOP_LOADING_UI })
+        })
+        .catch(err => console.log(err));
+}
 
 //post a take
 export const postTake = (newTake) => (dispatch) =>{ //takes new take and uses axios post request to post it as a new take
@@ -71,4 +85,8 @@ export const deleteTake = (takeId) => dispatch =>{
             dispatch({type: DELETE_TAKE, payload: takeId})
         })
         .catch(err => console.log(err))
+}
+
+export const clearErrors = () => dispatch => {
+    dispatch({type: CLEAR_ERRORS});
 }

@@ -7,7 +7,7 @@ import jwtDecode from 'jwt-decode';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 //components
-import Navbar from './components/Navbar';
+import Navbar from './components/layout/Navbar';
 import themeFile from './util/theme'
 import AuthRoute from './util/AuthRoute'
 

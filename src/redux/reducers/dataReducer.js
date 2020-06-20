@@ -1,4 +1,4 @@
-import {SET_TAKES, LIKE_TAKE, UNLIKE_TAKE, LOADING_DATA, DELETE_TAKE, POST_TAKE} from '../types'
+import {SET_TAKES, LIKE_TAKE, UNLIKE_TAKE, LOADING_DATA, DELETE_TAKE, POST_TAKE, SET_TAKE} from '../types'
 
 const initialState = { //initial state of no takes, no take data, and not loading
     takes: [],
@@ -19,9 +19,14 @@ export default function (state = initialState, action){
                 takes: action.payload,
                 loading: false
             }
+        case SET_TAKE:
+          return{
+            ...state,
+            take: action.payload
+          }
         case LIKE_TAKE: 
         case UNLIKE_TAKE:
-            let index = state.takes.findIndex(
+            var index = state.takes.findIndex(
                 (take) => take.takeId === action.payload.takeId
               );
               state.takes[index] = action.payload;
