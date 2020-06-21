@@ -28,7 +28,8 @@ import Autorenew from '@material-ui/icons/Autorenew'
 const styles = (theme) => ({
     paper: {
       padding: 20,
-      width: 400
+      width: 400,
+      textAlign: 'center',
     },
     profile: {
       '& .image-wrapper': {
@@ -145,8 +146,8 @@ class Profile extends Component {
             </Paper>
         ) : ( //case if user is not authenticated
             <Paper className={classes.paper}>
-                <Typography variant="body-2" align="center">
-                    No Profile Found, Please Login Again or Signup
+                <Typography variant="h6" align="center">
+                    Please Login or Signup
                 </Typography>
                 <div className={classes.buttons}>
                     <Button variant="contained" color="primary" component={Link} to="/login">

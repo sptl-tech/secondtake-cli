@@ -7,7 +7,7 @@ import MyButton from '../../util/MyButton'
 import dayjs from 'dayjs'
 import {Link} from 'react-router-dom'
 import LikeButton from './LikeButton'
-
+import Comments from './Comments'
 //MUI
 import Dialog from '@material-ui/core/Dialog'
 import DialogContent from '@material-ui/core/DialogContent'
@@ -23,10 +23,6 @@ import {getTake} from '../../redux/actions/dataActions'
 
 const styles = theme => ({
     ...theme.spread,
-    invisibleSeperator:{
-        border: 'none',
-        margin: 4
-    },
     profileImage: {
         maxWidth: 200,
         height: 200,
@@ -49,6 +45,15 @@ const styles = theme => ({
         textAlign: 'Center',
         marginTop: 50,
         marginBottom: 50
+    },
+    invisibleSeperator:{
+        border: 'none',
+        margin: 4
+      },
+      visibleSeperator:{
+        width: '100%',
+        borderBottom: '1px solid rgba(0,0,0,0.1)',
+        marginBottom: 20
     }
 
 })
@@ -65,7 +70,7 @@ class TakeDialog extends Component {
         this.setState({open: false})
     }
     render(){
-        const {classes, take: {takeId, body, createdAt, likeCount, commentCount, userImage, userHandle}, 
+        const {classes, take: {takeId, body, createdAt, likeCount, commentCount, userImage, userHandle, comments}, 
         UI: {loading}} = this.props;
 
         const dialogMarkup = loading ? ( //if loading, show the circular progress, else
@@ -101,6 +106,8 @@ class TakeDialog extends Component {
                         </MyButton>
                         <span>{commentCount} Comments</span>
                 </Grid>
+                <hr className={classes.visibleSeperator} />
+                <Comments comments={comments} />
             </Grid>
         )
         return(
