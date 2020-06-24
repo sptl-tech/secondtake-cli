@@ -7,7 +7,6 @@ import PropTypes from 'prop-types'
 
 import {connect} from 'react-redux'
 import {getTakes} from '../redux/actions/dataActions'
-import Autorenew from '@material-ui/icons/Autorenew'
 
 import CircularProgress from '@material-ui/core/CircularProgress'
 

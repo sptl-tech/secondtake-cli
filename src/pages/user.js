@@ -12,10 +12,14 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 
 class user extends Component {
     state={
-        profile: null
+        profile: null,
+        takeIdParam: null
     }
     componentDidMount(){
         const handle = this.props.match.params.handle;
+        const takeId = this.props.match.params.takeId;
+
+        if (takeId) this.setState({takeIdParam: takeId});
         this.props.getUserData(handle); //passes user handle to data reducer
         axios.get(`/user/${handle}`) //same GET request as data reducer function
             .then(res =>{
@@ -25,15 +29,29 @@ class user extends Component {
             })
             .catch(err => console.log(err))
     }
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        if (nextProps.match !== this.props.match) {
+          const takeId = nextProps.match.params.takeId;
+          if (takeId)
+            this.setState({ takeIdParam: takeId, openDialog: true });
+        }
+      }
     render() {
         const {takes, loading} = this.props.data
+        const {takeIdParam} = this.state
 
         const takesMarkup = loading ? ( 
             <CircularProgress size={200} thickness={2}/>
         ): takes === null ? ( //case if user has no takes
             <p>No Takes from this user</p>
-        ) : (
+        ) : !takeIdParam ?(
             takes.map(take => <Take key={take.takeId} take = {take} />)
+        ) : ( 
+            takes.map(take => {
+                if (take.takeId !== takeIdParam) //when we cannot find the take id we are trying to open
+                    return <Take key={take.takeId} take = {take} />
+                else return <Take key={take.takeId} take={take} openDialog />
+            })
         )
         return (
             <Grid container spacing ={9}>

@@ -1,4 +1,4 @@
-import {SET_USER, SET_AUTHENTICATED, SET_UNAUTHENTICATED, LOADING_USER, LIKE_TAKE, UNLIKE_TAKE} from '../types'
+import {SET_USER, SET_AUTHENTICATED, SET_UNAUTHENTICATED, LOADING_USER, LIKE_TAKE, UNLIKE_TAKE, MARK_NOTIFICATIONS_READ} from '../types'
 
 const initialState = {
     authenticated: false,
@@ -43,6 +43,11 @@ export default function (state = initialState, action){
             return{
                 ...state,
                 likes: state.likes.filter((like) => like.takeId !== action.payload.takeId)
+            }
+        case MARK_NOTIFICATIONS_READ: //when notifications are marked as read, need to loop through and change read property from false to true
+            state.notifications.forEach(not => not.read = true);
+            return{
+                ...state
             }
         default:
             return state;

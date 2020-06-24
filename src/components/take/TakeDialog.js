@@ -61,14 +61,44 @@ const styles = theme => ({
 
 class TakeDialog extends Component {
     state = {
-        open: false
+        open: false,
+        oldPath: '',
+        newPath: '',
+        getTakeData: false
     }
+    componentDidMount(){ //check if we have open dialog
+        if(this.props.openDialog && !this.state.getTakeData){
+            this.setState({getTakeData: true})
+            this.handleOpen()
+        }
+    }
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        if (nextProps.openDialog && !this.state.getTakeData) {
+          this.setState({ getTakeData: true });
+          this.handleOpen();
+        }
+      }
+    
     handleOpen = () => { //when we open the dialog, need to send a request to server to retrieve that take
-        this.setState({open: true})
+        //logic: want to set the path to the take as it would be seen in a dialog to the user's page 
+        //We also want to reset the path when we click out of the take on the home page 
+        
+        let oldPath = window.location.pathname; //current location 
+
+        const {userHandle, takeId} = this.props;
+        const newPath = `/users/${userHandle}/take/${takeId}`; //path for take when dialog pops up
+
+        if(oldPath === newPath) oldPath = `users/${userHandle}` //edge case for when you directly go to take dialog url
+        
+        window.history.pushState(null, null, newPath); //set url to new path when the dialog opens 
+
+        this.setState({open: true, oldPath, newPath})
         this.props.getTake(this.props.takeId)
     }
     handleClose = () => { //when exit out of dialog
-        this.setState({open: false})
+        window.history.pushState(null, null, this.state.oldPath); //reverts back to old path when clicked out of take
+
+        this.setState({open: false, getTakeData: false})
         this.props.clearErrors();
     }
     render(){

@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import MyButton from '../../util/MyButton'
 import PostTake from '../take/PostTake'
+import Notifications from './Notifications'
 
 //From Material UI
 import AppBar from '@material-ui/core/AppBar'
@@ -12,7 +13,6 @@ import Button from '@material-ui/core/Button'
 
 //Icons
 import HomeIcon from '@material-ui/icons/Home'
-import Notifications from '@material-ui/icons/Notifications'
 
 
 
@@ -20,7 +20,6 @@ export class Navbar extends Component {
     render() {
         const {authenticated} = this.props
         return (
-            <div>
                 <AppBar position ="fixed">
                     <Toolbar className ="nav-container">
                         {authenticated ? (
@@ -31,9 +30,7 @@ export class Navbar extends Component {
                                     <HomeIcon color = "inherit" />
                                 </MyButton> 
                                 </Link>
-                                <MyButton tip ="Notifications">
-                                    <Notifications color ="inherit" />
-                                </MyButton>
+                                <Notifications/>
                             </Fragment>
                         ): (
                             <Fragment>
@@ -50,7 +47,6 @@ export class Navbar extends Component {
                         )}
                     </Toolbar>
                 </AppBar>
-            </div>
         )
     }
 }

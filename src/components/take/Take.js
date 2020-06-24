@@ -61,7 +61,7 @@ class Take extends Component {
                         <ChatIcon color="primary" />
                     </MyButton>
                     <span>{commentCount} Comments</span>
-                    <TakeDialog takeId={takeId} userHandle={userHandle} />
+                    <TakeDialog takeId={takeId} userHandle={userHandle} openDialog={this.props.openDialog} />
                 </CardContent>
            </Card>
         )
@@ -71,7 +71,8 @@ class Take extends Component {
 Take.propTypes = {
     user: PropTypes.object.isRequired,
     take: PropTypes.object.isRequired,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    openDialog: PropTypes.bool
 
 }
 
