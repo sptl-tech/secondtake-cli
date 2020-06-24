@@ -9,6 +9,9 @@ import {connect} from 'react-redux'
 import {getTakes} from '../redux/actions/dataActions'
 import Autorenew from '@material-ui/icons/Autorenew'
 
+import CircularProgress from '@material-ui/core/CircularProgress'
+
+
 
 class home extends Component {
   
@@ -20,7 +23,9 @@ class home extends Component {
 
         let recentTakesMarkup = !loading?(//if we aren't loading, then show takes
             takes.map((take) => <Take key ={take.takeId}take ={take}/>)
-        )  : <Autorenew />
+        )  : 
+        <CircularProgress size={200} thickness={2}/>
+  
         return (
             <Grid container spacing ={9}>
                 <Grid item sm={8} xs={12}> 

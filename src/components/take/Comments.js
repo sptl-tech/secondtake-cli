@@ -35,7 +35,7 @@ class Comments extends Component{
         const{comments, classes} = this.props; //extract comments from props
         return(
             <Grid container >
-                {comments.map((comment) => { //loops through comments array and destructures to get the info for each comment 
+                {comments.map((comment, index) => { //loops through comments array and destructures to get the info for each comment 
                     const{body, createdAt, userImage, userHandle} = comment;
                     return(
                         <Fragment key={createdAt}>
@@ -62,7 +62,9 @@ class Comments extends Component{
                                     </Grid>
                                 </Grid>
                             </Grid>
+                            {index !== comments.length - 1 ** ( //puts a seperator for each comment except the last one
                             <hr className={classes.visibleSeperator} />
+                            )}
                         </Fragment>
                     )
                 })}

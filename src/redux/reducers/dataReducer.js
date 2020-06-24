@@ -1,4 +1,4 @@
-import {SET_TAKES, LIKE_TAKE, UNLIKE_TAKE, LOADING_DATA, DELETE_TAKE, POST_TAKE, SET_TAKE} from '../types'
+import {SET_TAKES, LIKE_TAKE, UNLIKE_TAKE, LOADING_DATA, DELETE_TAKE, POST_TAKE, SET_TAKE, SUBMIT_COMMENT} from '../types'
 
 const initialState = { //initial state of no takes, no take data, and not loading
     takes: [],
@@ -52,6 +52,14 @@ export default function (state = initialState, action){
               ...state.takes
             ]
           }
+        case SUBMIT_COMMENT: //for submitted comments on created takes
+            return{ //add comment to the take dialog and enter the new take to the comments array
+              ...state,
+              take: {
+                ...state.take,
+                comments: [action.payload, ...state.take.comments]
+              }
+            }
         default:
             return state;
         }

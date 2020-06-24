@@ -8,6 +8,7 @@ import dayjs from 'dayjs'
 import {Link} from 'react-router-dom'
 import LikeButton from './LikeButton'
 import Comments from './Comments'
+import CommentForm from './CommentForm'
 //MUI
 import Dialog from '@material-ui/core/Dialog'
 import DialogContent from '@material-ui/core/DialogContent'
@@ -19,7 +20,7 @@ import UnfoldMore from '@material-ui/icons/UnfoldMore'
 import ChatIcon from '@material-ui/icons/Chat'
 //Redux
 import {connect} from 'react-redux'
-import {getTake} from '../../redux/actions/dataActions'
+import {getTake, clearErrors} from '../../redux/actions/dataActions'
 
 const styles = theme => ({
     ...theme.spread,
@@ -68,6 +69,7 @@ class TakeDialog extends Component {
     }
     handleClose = () => { //when exit out of dialog
         this.setState({open: false})
+        this.props.clearErrors();
     }
     render(){
         const {classes, take: {takeId, body, createdAt, likeCount, commentCount, userImage, userHandle, comments}, 
@@ -107,6 +109,7 @@ class TakeDialog extends Component {
                         <span>{commentCount} Comments</span>
                 </Grid>
                 <hr className={classes.visibleSeperator} />
+                <CommentForm takeId={takeId} />
                 <Comments comments={comments} />
             </Grid>
         )
@@ -130,6 +133,7 @@ class TakeDialog extends Component {
    
 }
 TakeDialog.propTypes = {
+    clearErrors: PropTypes.func.isRequired,
     getTake: PropTypes.func.isRequired,
     takeId: PropTypes.string.isRequired,
     userHandle: PropTypes.string.isRequired,
@@ -144,7 +148,8 @@ const mapStateToProps = state => ({
 })
 
 const mapActionsToProps = {
-    getTake
+    getTake,
+    clearErrors
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(TakeDialog));

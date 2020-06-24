@@ -1,4 +1,4 @@
-import { SET_TAKES, LOADING_DATA, LIKE_TAKE, UNLIKE_TAKE, SET_ERRORS, DELETE_TAKE, CLEAR_ERRORS, POST_TAKE, LOADING_UI, STOP_LOADING_UI, SET_TAKE} from '../types'
+import { SET_TAKES, LOADING_DATA, LIKE_TAKE, UNLIKE_TAKE, SET_ERRORS, DELETE_TAKE, CLEAR_ERRORS, POST_TAKE, LOADING_UI, STOP_LOADING_UI, SET_TAKE, SUBMIT_COMMENT, DELETE_COMMENT} from '../types'
 import axios from 'axios'
 
 //retreiving all takes
@@ -42,9 +42,7 @@ export const postTake = (newTake) => (dispatch) =>{ //takes new take and uses ax
                 type: POST_TAKE,
                 payload: res.data
             });
-            dispatch({
-                type: CLEAR_ERRORS
-            })
+            dispatch(clearErrors());
         })
         .catch(err =>{
             dispatch({
@@ -78,6 +76,24 @@ export const unlikeTake = (takeId) => dispatch =>{
         .catch(err => console.log(err));
 }
 
+//submitting a comment 
+export const submitComment = (takeId, commentData) => (dispatch) =>{
+    axios.post(`/take/${takeId}/comment`, commentData)
+        .then(res=> {
+            dispatch({
+                type: SUBMIT_COMMENT,
+                payload: res.data
+            });
+            dispatch(clearErrors());
+        })
+        .catch(err => {
+            dispatch({
+                type: SET_ERRORS,
+                payload: err.response.data
+            })
+        })
+}
+
 //delete take
 export const deleteTake = (takeId) => dispatch =>{
     axios.delete(`/take/${takeId}`)
@@ -85,6 +101,23 @@ export const deleteTake = (takeId) => dispatch =>{
             dispatch({type: DELETE_TAKE, payload: takeId})
         })
         .catch(err => console.log(err))
+}
+
+export const getUserData = (userHandle) => dispatch =>{ //for retreiving user's details for the user page
+    dispatch({type: LOADING_DATA})
+    axios.get(`/user/${userHandle}`)
+        .then(res=>{
+            dispatch({
+                type: SET_TAKES,
+                payload: res.data.takes
+            });
+        })
+        .catch(() =>{
+            dispatch({
+                type: SET_TAKES,
+                payload: null
+            })
+        })
 }
 
 export const clearErrors = () => dispatch => {

@@ -18,5 +18,4 @@ export const LIKE_TAKE = 'LIKE_TAKE';
 export const UNLIKE_TAKE = 'UNLIKE_TAKE';
 export const DELETE_TAKE = 'DELETE_TAKE';
 export const POST_TAKE = 'POST_TAKE';
-
-
+export const SUBMIT_COMMENT = 'SUBMIT_COMMENT';

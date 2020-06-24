@@ -22,14 +22,13 @@ import CalendarToday from '@material-ui/icons/CalendarToday'
 import Grade from '@material-ui/icons/Grade'
 import EditIcon from '@material-ui/icons/Edit'
 import KeyboardReturn from '@material-ui/icons/KeyboardReturn'
-import Autorenew from '@material-ui/icons/Autorenew'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 
 const styles = (theme) => ({
     paper: {
       padding: 20,
-      width: 400,
-      textAlign: 'center',
+ 
     },
     profile: {
       '& .image-wrapper': {
@@ -73,6 +72,7 @@ const styles = (theme) => ({
         margin: '20px 10px'
       }
     }
+
   })
 
 class Profile extends Component {
@@ -158,7 +158,7 @@ class Profile extends Component {
                     </Button>
                 </div>
             </Paper>
-        )) : (<Autorenew />) //if loading, show loading paragraph, else check for authentication: if authenticated -> show profile, else throw error for no profile data
+        )) : (<CircularProgress size={100} thickness={2}/>) //if loading, show loading paragraph, else check for authentication: if authenticated -> show profile, else throw error for no profile data
         
         return profileMarkup;
     }
