@@ -18,6 +18,7 @@ You're sections headers will be used to reference location of destination.
 ---
 
 ## Description
+Video Guide of all Features - [Video](https://drive.google.com/file/d/1-uYZVd0fhgjsjVbMPWgTYTUMVylddx1l/view?usp=sharing)
 
 This project was inspired by the sports talk show First Take. The show consists of several sports commentators who have debates on topics that are trending in the sports world. I often found many fans giving thier opinions in the comments and on social media, so I wanted to create an application which allows fans to interact with each other and replicate those same discussions as on First Take.  
 
@@ -125,8 +126,8 @@ SOFTWARE.
 
 ## Author Info
 
-- <a href="https://sptl-tech.github.io/" target="_blank">Sahil Patel (Website)</a>
-- <a href="https://www.linkedin.com/in/sahilpatel-0/" target="_blank">Sahil Patel (LinkedIn)</a>
+- Website - [Sahil Patel](https://sptl-tech.github.io/)
+- LinkedIn - [Sahil Patel](https://www.linkedin.com/in/sahilpatel-0/)
 
 [Back To The Top](#second-take)
 
