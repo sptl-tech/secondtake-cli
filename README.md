@@ -30,7 +30,7 @@ This project was inspired by the sports talk show First Take. The show consists 
 - Material-UI
 - Postman (API testing)
 
-[Back To The Top](#read-me-template)
+[Back To The Top](#second-take)
 
 ---
 
@@ -125,8 +125,8 @@ SOFTWARE.
 
 ## Author Info
 
-- Website - [Sahil Patel](https://sptl-tech.github.io/)
-- LinkedIn - [Sahil Patel](https://www.linkedin.com/in/sahilpatel-0/)
+- <a href="https://sptl-tech.github.io/" target="_blank">Sahil Patel (Website)</a>
+- <a href="https://www.linkedin.com/in/sahilpatel-0/" target="_blank">Sahil Patel (LinkedIn)</a>
 
 [Back To The Top](#second-take)
 
