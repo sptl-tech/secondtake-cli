@@ -1,68 +1,132 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Second Take
 
-## Available Scripts
+https://secondtake-40b4f.firebaseapp.com/
 
-In the project directory, you can run:
+> A social media web application for sports fans to engage in discussions and debates. Created with the React library in the front-end and Firebase with the Express.JS framework for the back-end. 
 
-### `yarn start`
+---
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Table of Contents
+You're sections headers will be used to reference location of destination.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- [Description](#description)
+- [How To Use](#how-to-use)
+- [Acknowledgments](#acknowledgments)
+- [License](#license)
+- [Author Info](#author-info)
 
-### `yarn test`
+---
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Description
 
-### `yarn build`
+This project was inspired by the sports talk show First Take. The show consists of several sports commentators who have debates on topics that are trending in the sports world. I often found many fans giving thier opinions in the comments and on social media, so I wanted to create an application which allows fans to interact with each other and replicate those same discussions as on First Take.  
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Technologies
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- React
+- Redux
+- Firebase
+- Express.JS (Node.JS application framework)
+- Material-UI
+- Postman (API testing)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[Back To The Top](#read-me-template)
 
-### `yarn eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## How To Use
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Prerequistes 
+- Download Node.JS Installer (https://nodejs.org/en/download/). The installer comes with the NPM package manager. 
+- Configure Firebase with a Google account (https://firebase.google.com/)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Installation
+Clone the GitHub Repository 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```sh
+git clone https://github.com/sptl-tech/secondtake-cli.git
+```
 
-## Learn More
+Run NPM to install all necessary packages/dependencies
+```sh
+npm install
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### API Reference
+The panels below highlight some of the API calls
 
-### Code Splitting
+Takes (posts)
+```sh
+GET /takes -- retreive all posts
+GET /take/:takeId -- retreieve a specific post 
+GET /take/:takeId/like -- liking a take
+GET /take/:takeId/unlike -- unliking a take
+```
+```sh
+POST /take -- posting a take
+POST /take/:takeId/comment -- adding comment to a post 
+DELETE /take/:takeId -- delete a take
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Users
+```sh
+GET /user -- retreive all user data 
+GET /user/:handle -- retreieve details for specific user (depending on handle)
+```
+```sh
+POST /signup -- signup a new user
+POST /login -- authenticate an existing user 
+POST /user/image -- uploading profile picture
+POST /user -- Adding and editing user details
+```
 
-### Analyzing the Bundle Size
+[Back To The Top](#second-take)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+---
 
-### Making a Progressive Web App
+## Acknowledgments
+- Introduction to React by Bob Ziroll (@bobziroll) -- https://www.youtube.com/watch?v=DLX62G4lc44
+- Material-UI for styling -- https://material-ui.com/
+- Create a Social Media App: Here’s Everything you Need to Know by Pavel Gertsberg. Introduction and structured approach for application -- https://www.disciplemedia.com/social-networks/create-a-social-media-app/
+- Hosting a Static Website on Firebase by Aleem Uddin -- https://medium.com/@aleemuddin13/how-to-host-static-website-on-firebase-hosting-for-free-9de8917bebf2
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+[Back To The Top](#second-take)
 
-### Advanced Configuration
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## License
 
-### Deployment
+MIT License
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Copyright (c) [2020] [Sahil Patel]
 
-### `yarn build` fails to minify
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+[Back To The Top](#second-take)
+
+---
+
+## Author Info
+
+- Website - [Sahil Patel](https://sptl-tech.github.io/)
+- LinkedIn - [Sahil Patel](https://www.linkedin.com/in/sahilpatel-0/)
+
+[Back To The Top](#second-take)
+
